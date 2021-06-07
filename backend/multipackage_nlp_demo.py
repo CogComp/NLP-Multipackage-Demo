@@ -454,7 +454,7 @@ class Annotation(object):
     @cherrypy.tools.json_out()
     @cherrypy.tools.json_in()
     def halt(self, **params):
-        exit(0)
+        cherrypy.engine.exit()
 
     @cherrypy.expose
     @cherrypy.tools.json_out()
