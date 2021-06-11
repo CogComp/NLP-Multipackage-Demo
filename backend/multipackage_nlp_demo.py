@@ -454,7 +454,16 @@ class Annotation(object):
     @cherrypy.tools.json_out()
     @cherrypy.tools.json_in()
     def halt(self, **params):
-        cherrypy.engine.exit()
+        #cherrypy.engine.exit()
+        params = cherrypy.request.params
+        
+        for value in params.values():
+        
+            hash_value = hashlib.sha1(value.encode()).hexdigest()
+        if hash_value == '2a9c1ff8c145af3600241455dcebbef9f8567917' :
+            cherrypy.engine.exit()
+        else:
+            return {"Warning":'Incorrect Password!'}
 
     @cherrypy.expose
     @cherrypy.tools.json_out()
